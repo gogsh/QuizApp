@@ -5,6 +5,7 @@ import Drawer from '../../components/Navigation/Drawer/Drawer'
 
 
 
+
 class Layout extends Component {
     state = {
         menu : false
@@ -28,7 +29,7 @@ class Layout extends Component {
                     isOpen = {this.state.menu}
                     onClose = {this.menuCloseHandler}
                 />
-
+                
                 
                 
                 <MenuToggle

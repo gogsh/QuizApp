@@ -28,13 +28,13 @@
                 &:hover  {
                     opacity: .7;                    
                 }
-                // .active {
-                //     &
-                    
-                // }
+                
                 
             }
         }
+    }
+    .active{
+        opacity: .3;
     }
 }
 
