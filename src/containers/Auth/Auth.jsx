@@ -5,8 +5,6 @@ import Input from '../../components/UI/Input/Input'
 import is from 'is_js'
 import axios from 'axios'
 
-
-
 export default class Auth extends Component {
 
     state = {
@@ -22,7 +20,7 @@ export default class Auth extends Component {
                 validation: {
                     required: true,
                     email: true
-                } 
+                }
             },
             password: {
                 value: '',
