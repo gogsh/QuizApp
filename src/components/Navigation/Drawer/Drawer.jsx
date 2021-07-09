@@ -1,51 +1,63 @@
 import React, { Component } from 'react'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import classes from './Drawer.module.scss'
 import Backdrop from '../../UI/Backdrop/Backdrop'
 
 
-const links = [
-    {to: '/', lable: 'Список', exact: true},
-    {to: '/auth', lable: 'Авторизация', exact: false},
-    {to: '/quiz-creator', lable: 'Создать тест', exact: false}
-]
+
 
 class Drawer extends Component {
 
-    
-    renderLinks() {       
+
+    renderLinks(links) {
         return links.map((link, index) => {
             return (
                 <li key={index}>
                     <NavLink
-                        to = {link.to}
-                        exact = {link.exact}
-                        activeClassName = {classes.active}
-                        onClick = {this.props.onClose}
+                        to={link.to}
+                        exact={link.exact}
+                        activeClassName={classes.active}
+                        onClick={this.props.onClose}
                     >
                         {link.lable}
                     </NavLink>
                 </li>
             )
-        })     
-            
+        })
+
     }
 
-    render () {
+    render() {
         const cls = [classes.Drawer]
 
         if (!this.props.isOpen) {
             cls.push(classes.close)
         }
 
+        const links = [
+            { to: '/', lable: 'Список', exact: true },         
+        ]
+
+        
+
+        if (this.props.isAuthenticated) {
+            links.push({ to: '/quiz-creator', lable: 'Создать тест', exact: false })
+            links.push({ to: '/logout', lable: 'Выйти', exact: false })
+        } else {
+            links.push({ to: '/auth', lable: 'Авторизация', exact: false })            
+        }
+
+        console.log('Auth', this.props.isAuthenticated);
+        console.log(localStorage)
+
         return (
             <React.Fragment>
                 <nav className={cls.join(' ')}>
                     <ul>
-                    { this.renderLinks() }     
+                        {this.renderLinks(links)}
                     </ul>
                 </nav>
-                { this.props.isOpen ? <Backdrop onClick={ this.props.onClose} /> : null }
+                {this.props.isOpen ? <Backdrop onClick={this.props.onClose} /> : null}
             </React.Fragment>
         )
     }
